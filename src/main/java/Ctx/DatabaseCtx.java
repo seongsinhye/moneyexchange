@@ -1,6 +1,7 @@
 
 package Ctx;
 
+import dao.NoticeDao;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ public class DatabaseCtx {
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost:3306/moneyExchange");
         ds.setUsername("root");
-        ds.setPassword("67201702");
+        ds.setPassword("vldksh1207!");
 
         return ds;
     }
@@ -26,6 +27,11 @@ public class DatabaseCtx {
         DataSourceTransactionManager tm = new DataSourceTransactionManager();
         tm.setDataSource(dataSource());
         return tm;
+    }
+
+    @Bean
+    public NoticeDao noticeDao(){
+        return new NoticeDao(dataSource());
     }
 
 
