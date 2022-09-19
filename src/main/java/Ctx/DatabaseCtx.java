@@ -2,6 +2,10 @@
 package Ctx;
 
 import dao.NoticeDao;
+import User.Dao.MemberInfo_tb_Dao;
+import User.Service.JoinService;
+import User.Service.LoginService;
+import User.Service.UserService;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +36,28 @@ public class DatabaseCtx {
     @Bean
     public NoticeDao noticeDao(){
         return new NoticeDao(dataSource());
+
+    public MemberInfo_tb_Dao memberInfo_tb_dao(){
+        return new MemberInfo_tb_Dao(dataSource());
+    }
+
+    @Bean
+    public JoinService joinService(){
+        JoinService joinService = new JoinService();
+        joinService.setMemberInfo_tb_dap(memberInfo_tb_dao());
+        return joinService;
+    }
+    @Bean
+    public LoginService loginService(){
+        LoginService loginService = new LoginService();
+        loginService.setMemberInfo_tb_dap(memberInfo_tb_dao());
+        return loginService;
+    }
+    @Bean
+    public UserService userService(){
+        UserService userService = new UserService();
+        userService.setMemberInfo_tb_dap(memberInfo_tb_dao());
+        return userService;
     }
 
 
