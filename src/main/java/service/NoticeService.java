@@ -11,11 +11,11 @@ public class NoticeService {
 
     private NoticeDao noticeDao;
 
-    public void setNoticeDao(NoticeDao noticeDao) {
+    public void setNoticeDao(NoticeDao noticeDao){
         this.noticeDao = noticeDao;
     }
 
-    public void add(NoticeInfo noticeInfo) {
+    public void add(NoticeInfo noticeInfo){
 
         NoticeInfo newNotcie = new NoticeInfo(noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
 
@@ -24,36 +24,38 @@ public class NoticeService {
 
     }
 
-    public int getAmount() {
-        int amount = noticeDao.getAmount();
+    public int getAmount(){
+        int amount =  noticeDao.getAmount();
 
         return amount;
     }
 
-    public List<NoticeInfo> getNoticeInfoList(int pageNumber) {
+    public List<NoticeInfo> getNoticeInfoList(int pageNumber){
         pageNumber = (pageNumber - 1) * 10;
 
 
-        List<NoticeInfo> noticeInfoList = noticeDao.selectAll(pageNumber);
+
+
+        List<NoticeInfo> noticeInfoList =  noticeDao.selectAll(pageNumber);
 
         return noticeInfoList;
 
     }
 
-    public NoticeInfo getNoticeInfo(int noticeIdx) {
+    public NoticeInfo getNoticeInfo(int noticeIdx){
 
         NoticeInfo noticeInfo = noticeDao.selectNotice(noticeIdx);
 
         return noticeInfo;
     }
 
-    public void getNewNoticeInfo(NoticeInfo noticeInfo) {
+    public void getNewNoticeInfo(NoticeInfo noticeInfo){
 
         noticeDao.updateNotice(noticeInfo);
 
     }
 
-    public void noticeDelete(int noticeIdx) {
+    public void noticeDelete(int noticeIdx){
         noticeDao.noticeDelete(noticeIdx);
     }
 

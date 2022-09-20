@@ -7,8 +7,16 @@
 /dataSources/
 /dataSources.local.xml
 dataSources
-
-../.idea
+workspace.xml
+dataSources.xml
+dataSources.local.xml
+encodings.xml
+templateLanguages.xml
+jarRepositories.xml
+jsLibraryMappings.xml
+compiler.xml
+uiDesigner.xml
+vcs.xml
 ../target
 
 
