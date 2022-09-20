@@ -66,17 +66,17 @@ a:link, a:visited {
 }
 .right{
     text-align: right !important;
-margin: 23px;
+    margin: 23px;
 }
 
 h2{
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #666;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #666;
 }
 .line{
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #666;
-
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #666;
+    margin: 23px;
 }

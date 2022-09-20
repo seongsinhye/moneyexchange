@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
+import service.NoticeService;
 
 @Configuration
 public class DatabaseCtx {
@@ -33,10 +34,21 @@ public class DatabaseCtx {
         return tm;
     }
 
-    @Bean
-    public NoticeDao noticeDao(){
-        return new NoticeDao(dataSource());
 
+    @Bean
+    public NoticeDao noticeDao() {
+        return new NoticeDao(dataSource());
+    }
+
+    @Bean
+    public NoticeService noticeService() {
+        NoticeService noticeService = new NoticeService();
+        noticeService.setNoticeDao(noticeDao());
+
+        return noticeService;
+    }
+
+    @Bean
     public MemberInfo_tb_Dao memberInfo_tb_dao(){
         return new MemberInfo_tb_Dao(dataSource());
     }

@@ -2,15 +2,10 @@
   Created by IntelliJ IDEA.
   User: seongsinhye
   Date: 2022/09/17
-  Time: 8:56 PM
+  Time: 8:55 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,79 +37,113 @@
 </div>
 
 
-<form action="http://localhost:8080/moneyexchange/search/type" method="get">
+<form>
 
 
   <div class="container col-xxl-8 px-4 py-5">
 
     <div style="margin-left: 280px;">
-      <h3>통화별 검색 </h3>
+      <h3>환전 - 환율 계산기  </h3>
 
-      <label> 통화종류
-        <select class="form-select" aria-label="Default select example" name="type">
-          <option value="USD">USD (미국 달러) </option>
-          <option value="JPY(100)">JPY (일본 100엔)</option>
-          <option value="EUR">EUR (유럽연합 유로)</option>
-        </select>
 
-      </label>
+      <div style="padding-top: 20px;">
+        <label> 환전 계산 방식
+          <select class="form-select" aria-label="Default select example">
 
-        <div >
+            <option value="1">현찰 살때 </option>
+            <option value="2">현찰 팔때 </option>
 
-          <div style="margin: 20px 0 20px 0;">
-            <label> 조회일 예시 20220919 형식으로 작성해주세요.
+          </select>
 
-              <input type="text" name="day" >
-            </label>
-          </div>
+        </label>
+
+      </div>
+
+
+
+      <div style="padding-top: 20px;">
+
+
+
+        <label> 통화종류
+          <select class="form-select" aria-label="Default select example">
+
+            <option value="1">USD (미국 달러) </option>
+            <option value="2">JPY (일본 100엔)</option>
+            <option value="3">EUR (유럽연합 유로)</option>
+          </select>
+
+        </label>
+
+        <div  style="padding-top: 20px;">
+          <label> 필요한 금액 입력하세요
+            <input type="text">
+
+          </label>
+
         </div>
-        <input type="submit" value="조회"  style=" margin-left: 425px;font-size: 24px;">
+
+
+      </div>
+
+
+      <div style="padding-top: 20px;">
+        <label> 환율 우대율(%)
+          <select class="form-select" aria-label="Default select example">
+
+            <option value="1">0% </option>
+            <option value="2">20%</option>
+            <option value="3">50%</option>
+            <option value="3">100%</option>
+          </select>
+
+        </label>
 
 
 
-  </div>
-  </div>
+      </div>
+
+
+    </div>
+
+
+    <input type="submit" value="조회" style="margin-left: 300px; margin-top: 30px; padding: 10px; font-size: 32px; background: rgb(54, 164, 228);">
+
 
 </form>
 
 
-<hr style="margin-top: 20px;">
-
-<div class="table-responsive exchange-list" style="margin-left: 180px;">
 
 
-  <h3> 환율 정보 </h3>
 
+
+
+<hr style="margin-top: 100px;">
+
+<div class="table-responsive exchange-list" style="margin-left: 180px;" >
+
+
+  <h3  style="padding-top: 20px;"> 계산 정보  </h3>
+  <p>기준일 : 당일 날짜로 출력하기 </p>
   <table class="table table-striped table-sm " style="width: 700px;">
     <thead>
     <tr>
+
       <th scope="col">통화종류</th>
-      <th scope="col">통화종류</th>
-      <th scope="col">매매기준율</th>
-      <th scope="col">현찰(살때)</th>
-      <th scope="col">현찰(팔때)</th>
+      <th scope="col">기준율</th>
+      <th scope="col">고시환율 적용시</th>
+      <th scope="col">우대환율 적용시</th>
+
     </tr>
     </thead>
     <tbody>
+    <tr>
+      <td>USD</td>
+      <td>미국(달러)</td>
+      <td>141,941원</td>
+      <td>141,941원</td>
 
-    <c:if test="${empty exchangeInfoList}">
-        <tr>
-          <td>서비스 가능 시간이 아닙니다. </td>
-
-        </tr>
-
-    </c:if>
-
-    <c:forEach items="${exchangeInfoList}" var="exchangeInfo">
-      <tr>
-        <td>${exchangeInfo.cur_unit}</td>
-        <td>${exchangeInfo.cur_nm}</td>
-        <td>${exchangeInfo.deal_bas_r}</td>
-        <td>${exchangeInfo.ttb}</td>
-        <td>${exchangeInfo.tts}</td>
-      </tr>
-
-    </c:forEach>
+    </tr>
 
 
     </tbody>
@@ -123,11 +152,7 @@
 
 
 
-
-
-
-
-
+</div>
 
 <div class="container">
   <footer class="py-3 my-4">

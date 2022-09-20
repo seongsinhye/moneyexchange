@@ -1,16 +1,10 @@
 package User.Controller;
 
 import User.Dto.JoinCommand;
-import User.Dto.LoginCommand;
 import User.Dto.LoginSession;
-import User.Dto.NaverLoginBO;
 import User.Exception.CantMakeUserInfoException;
-import User.Exception.DuplicateUserException;
-import User.Exception.UserNotFoundException;
 import User.Service.JoinService;
-import User.Service.LoginService;
 import User.Validator.JoinValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -23,10 +17,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class JoinController {
 
-    @Autowired
+
     private JoinService joinService;
 
-    public void setJoinService(JoinService joinService) {
+    public void setJoinController(JoinService joinService) {
         this.joinService = joinService;
     }
 

@@ -7,3 +7,9 @@
 /dataSources/
 /dataSources.local.xml
 dataSources
+
+../.idea
+../target
+
+
+

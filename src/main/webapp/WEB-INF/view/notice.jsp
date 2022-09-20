@@ -27,6 +27,17 @@
         margin: 50px 0px 40px 0px;">공지사항</h1>
 
   <a href="http://localhost:8080/moneyexchange/notice/form" >공지사항 작성하기</a>
+
+  <c:if test="${empty noticeInfoList}">
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action ">
+        공지사항이 없습니다.
+    </a>
+  </div>
+
+  </c:if>
+
+
   <c:forEach items="${noticeInfoList}" var="noticeInfo">
       <div class="list-group">
         <a href="http://localhost:8080/moneyexchange/notice/detail?noticeIdx=${noticeInfo.noticeIdx}" class="list-group-item list-group-item-action ">
@@ -39,6 +50,7 @@
   <div style="padding-left: 43%;">
     <nav aria-label="Page navigation example" >
       <ul class="pagination" style="margin-top: 1rem;">
+
         <c:forEach begin="1" end="${Math.ceil(amount/10)}" var="number">
           <li class="page-item"><a class="page-link" href="http://localhost:8080/moneyexchange/notice?pageNumber=${number}">${number}</a></li>
         </c:forEach>

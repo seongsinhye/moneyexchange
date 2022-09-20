@@ -3,7 +3,6 @@ package Ctx;
 import Controller.*;
 import dao.NoticeDao;
 import org.apache.tomcat.jdbc.pool.DataSource;
-import Etc.ExController;
 import User.Controller.JoinController;
 import User.Controller.LoginController;
 import User.Controller.UserController;
@@ -30,18 +29,7 @@ public class ControllerCtx {
         return ds;
     }
 
-    @Bean
-    public NoticeDao noticeDao(){
-        return new NoticeDao(dataSource());
-    }
 
-    @Bean
-    public NoticeService noticeService(){
-        NoticeService noticeService = new NoticeService();
-        noticeService.setNoticeDao(noticeDao());
-
-        return  noticeService;
-    }
 
     @Bean
     public ExController exController() {
@@ -50,10 +38,14 @@ public class ControllerCtx {
 
 
     @Bean
-    public AlarmController alarmController(){ return new AlarmController();}
+    public AlarmController alarmController() {
+        return new AlarmController();
+    }
 
     @Bean
-    public CalculatorController calculatorController(){return new CalculatorController();}
+    public CalculatorController calculatorController() {
+        return new CalculatorController();
+    }
 
     private LoginService loginService;
 
@@ -61,36 +53,42 @@ public class ControllerCtx {
 
     private UserService userService;
 
+    private NoticeService noticeService;
+
     @Bean
-    public NaverLoginBO naverLoginBO(){
+    public NaverLoginBO naverLoginBO() {
         return new NaverLoginBO();
     }
 
 
     @Bean
-    public LoginController loginController(){
+    public LoginController loginController() {
         LoginController loginController = new LoginController();
         loginController.setLoginService(loginService, naverLoginBO());
         return loginController;
     }
 
     @Bean
-    public JoinController joinController(){
+    public JoinController joinController() {
         JoinController joinController = new JoinController();
-        joinController.setJoinService(joinService);
+        joinController.setJoinController(joinService);
         return joinController;
     }
 
     @Bean
-    public UserController userController(){
+    public UserController userController() {
         UserController userController = new UserController();
         userController.setUserService(userService);
         return userController;
     }
 
     @Bean
-    public ExchangeController exchangeController(){return new ExchangeController();}
+    public ExchangeController exchangeController() {
+        return new ExchangeController();
+    }
 
     @Bean
-    public NoticeController noticeController(){return new NoticeController(noticeService());}
+    public NoticeController noticeController() {
+        return new NoticeController(noticeService);
+    }
 }

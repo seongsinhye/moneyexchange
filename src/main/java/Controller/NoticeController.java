@@ -4,6 +4,7 @@ import Command.AddCommand;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.mysql.cj.protocol.x.Notice;
 import dto.NoticeInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,6 +20,7 @@ import java.util.List;
 @Controller
 public class NoticeController {
 
+    @Autowired
     private NoticeService noticeService;
 
     public NoticeController(NoticeService noticeService){
@@ -29,9 +31,7 @@ public class NoticeController {
     @GetMapping("/notice")
     public String noticePage(Model model, @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber ){
 
-
-        int amount = noticeService.getAmount();
-
+       int amount = noticeService.getAmount();
 
         List<NoticeInfo> noticeInfoList = noticeService.getNoticeInfoList(pageNumber);
 
