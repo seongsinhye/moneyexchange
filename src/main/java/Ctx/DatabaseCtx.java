@@ -23,10 +23,23 @@ public class DatabaseCtx {
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost:3306/moneyExchange");
         ds.setUsername("root");
-        ds.setPassword("vldksh1207!");
+        ds.setPassword("67201702");
 
         return ds;
     }
+
+    @Bean
+    public NoticeDao noticeDao(){
+        return new NoticeDao(dataSource());
+    }
+
+    @Bean
+    public NoticeService noticeService(){
+        NoticeService noticeService = new NoticeService();
+        noticeService.setNoticeDao(noticeDao());
+        return  noticeService;
+    }
+
     @Bean
     public PlatformTransactionManager transactionManager(){
         DataSourceTransactionManager tm = new DataSourceTransactionManager();
@@ -34,19 +47,6 @@ public class DatabaseCtx {
         return tm;
     }
 
-
-    @Bean
-    public NoticeDao noticeDao() {
-        return new NoticeDao(dataSource());
-    }
-
-    @Bean
-    public NoticeService noticeService() {
-        NoticeService noticeService = new NoticeService();
-        noticeService.setNoticeDao(noticeDao());
-
-        return noticeService;
-    }
 
     @Bean
     public MemberInfo_tb_Dao memberInfo_tb_dao(){

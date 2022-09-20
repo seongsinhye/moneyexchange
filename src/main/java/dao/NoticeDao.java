@@ -83,11 +83,11 @@ public class NoticeDao {
 
     public int getAmount(){
 
-        int amount ;
+        int count = 0;
 
-        amount = jdbcTemplate.queryForObject("SELECT COUNT(*) AS amount FROM notice", Integer.class);
+        count = jdbcTemplate.queryForObject("SELECT COUNT(*) AS amount FROM notice", Integer.class);
 
-        return amount;
+        return count;
     }
 
     public void updateNotice(NoticeInfo noticeInfo){

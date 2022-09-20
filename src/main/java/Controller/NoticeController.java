@@ -31,7 +31,9 @@ public class NoticeController {
     @GetMapping("/notice")
     public String noticePage(Model model, @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber ){
 
-       int amount = noticeService.getAmount();
+
+        int amount = noticeService.getAmount();
+
 
         List<NoticeInfo> noticeInfoList = noticeService.getNoticeInfoList(pageNumber);
 

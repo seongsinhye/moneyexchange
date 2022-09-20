@@ -1,8 +1,6 @@
 package Ctx;
 
 import Controller.*;
-import dao.NoticeDao;
-import org.apache.tomcat.jdbc.pool.DataSource;
 import User.Controller.JoinController;
 import User.Controller.LoginController;
 import User.Controller.UserController;
@@ -17,25 +15,11 @@ import service.NoticeService;
 @Configuration
 public class ControllerCtx {
 
-    @Bean(destroyMethod = "close")
-    public DataSource dataSource() {
-        DataSource ds = new DataSource();
-
-        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/moneyExchange");
-        ds.setUsername("root");
-        ds.setPassword("vldksh1207!");
-
-        return ds;
-    }
-
-
 
     @Bean
     public ExController exController() {
         return new ExController();
     }
-
 
     @Bean
     public AlarmController alarmController() {
@@ -53,8 +37,6 @@ public class ControllerCtx {
 
     private UserService userService;
 
-    private NoticeService noticeService;
-
     @Bean
     public NaverLoginBO naverLoginBO() {
         return new NaverLoginBO();
@@ -71,7 +53,7 @@ public class ControllerCtx {
     @Bean
     public JoinController joinController() {
         JoinController joinController = new JoinController();
-        joinController.setJoinController(joinService);
+        joinController.setJoinService(joinService);
         return joinController;
     }
 
@@ -87,6 +69,7 @@ public class ControllerCtx {
         return new ExchangeController();
     }
 
+    private NoticeService noticeService;
     @Bean
     public NoticeController noticeController() {
         return new NoticeController(noticeService);
