@@ -122,37 +122,40 @@
     <div>
         <button type="submit" onclick="callSa()">본인인증</button>
     </div>
-    <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/join/input" modelAttribute="joinCommand">
+    <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/join/input"
+               modelAttribute="joinCommand">
         <div class="row g-3">
             <div class="col-12">
                 <label for="id" class="form-label">아이디</label>
-                <form:input path="id" cssClass="form-control" id="id" placeholder="id123" />
-                <form:errors path="id" />
+                <form:input path="id" cssClass="form-control" id="id" placeholder="id123"/>
+                <form:errors path="id"/>
             </div>
             <div class="col-12">
                 <label for="pw" class="form-label">비밀번호</label>
                 <form:password path="pw" cssClass="form-control" id="pw" placeholder="password123"/>
-                <form:errors path="pw" />
+                <form:errors path="pw"/>
             </div>
             <div class="col-12">
                 <label for="pw_check" class="form-label">비밀번호 확인</label>
                 <form:password path="pw_check" cssClass="form-control" id="pw_check" placeholder="비밀번호 다시 입력하세여"/>
-                <form:errors path="pw_check" />
+                <form:errors path="pw_check"/>
             </div>
             <div class="col-12">
                 <label for="name" class="form-label">이름</label>
-                <form:input path="name" cssClass="form-control" id="name" placeholder="길동이는 길동동동" value="<%=getName%>" readonly="true"/>
-                <form:errors path="name" />
+                <form:input path="name" cssClass="form-control" id="name" placeholder="길동이는 길동동동" value="<%=getName%>"
+                            readonly="true"/>
+                <form:errors path="name"/>
             </div>
             <div class="col-12">
                 <label for="tel" class="form-label">전화번호</label>
-                <form:input path="tel" cssClass="form-control" id="tel" placeholder="010-0000-0000" value="<%=getPhone%>" readonly="true"/>
-                <form:errors path="tel" />
+                <form:input path="tel" cssClass="form-control" id="tel" placeholder="010-0000-0000"
+                            value="<%=getPhone%>" readonly="true"/>
+                <form:errors path="tel"/>
             </div>
             <div class="col-12">
                 <label for="addr" class="form-label">주소</label>
                 <form:input path="addr" cssClass="form-control" id="addr" placeholder="서면로 10"/>
-                <form:errors path="addr" />
+                <form:errors path="addr"/>
             </div>
         </div>
 

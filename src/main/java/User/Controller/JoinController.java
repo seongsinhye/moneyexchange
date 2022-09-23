@@ -36,6 +36,12 @@ public class JoinController {
         return "join";
     }
 
+    @PostMapping("/join")
+    public String fail(Model model) {
+        model.addAttribute("joinCommand", new JoinCommand());
+        return "join";
+    }
+
     @PostMapping("/join2")
     public String view_join(Model model) {
         model.addAttribute("joinCommand", new JoinCommand());

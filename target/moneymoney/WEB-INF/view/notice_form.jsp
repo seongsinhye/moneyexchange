@@ -37,7 +37,7 @@
 
   <c:if test="${empty param.noticeIdx}">
     <div id="wrapper" class=" ">
-      <form:form action="/moneyexchange/notice/Add" method="get">
+      <form:form action="${pageContext.request.contextPath}/notice/Add" method="get">
 
         <div id="title_wrapper">
           <input type="text" name="noticeTitle" class="title_txt title" id="form_detail_text" placeholder="제목을 입력하세요." style="padding: 20px;">
@@ -60,7 +60,7 @@
 
   <c:if test="${not empty param.noticeIdx}">
     <div id="wrapper" class=" ">
-      <form:form action="/moneyexchange/notice/update?noticeIdx=${noticeInfo.noticeIdx}" method="post">
+      <form:form action="${pageContext.request.contextPath}/notice/update?noticeIdx=${noticeInfo.noticeIdx}" method="post">
         <input type="hidden" name="noticeIdx" value="${noticeInfo.noticeIdx}">
         <div id="title_wrapper">
           <input type="text" name="noticeTitle" class="title_txt title" id="form_detail_text" value="${noticeInfo.noticeTitle}" style="padding: 20px;">

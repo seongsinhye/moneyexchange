@@ -6,6 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
+
 @Configuration
 @EnableWebMvc
 public class MvcCtx implements WebMvcConfigurer {
@@ -19,6 +27,32 @@ public class MvcCtx implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/view/", ".jsp");
     }
+
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+
+        registry.addInterceptor(loginCheckInterceptor())
+                .addPathPatterns("/pay")
+                .excludePathPatterns("");
+
+        registry.addInterceptor(timeCheckInterceptor())
+                .addPathPatterns("*")
+                .excludePathPatterns("/main", "/login", "join", "/join/input", "join2", "/delete/userInfo/view", "/delete/userInfo",
+                        "/login", "/logout", "/login/self", "/login_success", "/login/oauth_kakao", "/userinfo", "/update/userinfo");
+
+    }
+
+    @Bean
+    public LoginCheckInterceptor loginCheckInterceptor(){
+        return new LoginCheckInterceptor();
+    }
+
+    @Bean
+    public TimeCheckInterceptor timeCheckInterceptor(){
+        return new TimeCheckInterceptor();
+    }
+
 
     @Bean
     public MessageSource messageSource(){

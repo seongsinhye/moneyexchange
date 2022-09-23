@@ -43,8 +43,6 @@
 </head>
 <body>
 <%@include file="includes/header.jsp"%>
-
-
 <div class="container col-xxl-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-lg-6" style="margin: auto;">
@@ -54,9 +52,7 @@
                     <a href="${pageContext.request.contextPath}/logout">
                         <button class="w-100 btn btn-lg btn-primary" type="submit">로그아웃</button>
                     </a>
-
                 </div>
-
             </c:if>
             <c:if test="${empty loginSession}">
                 <form:form action="${pageContext.request.contextPath}/login/self" modelAttribute="loginCommand" cssClass="p-4 p-md-5 border rounded-3 bg-light">
@@ -86,11 +82,9 @@
                     <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                 </form:form>
             </c:if>
-
         </div>
     </div>
 </div>
-
 
 <%@include file="includes/footer.jsp"%>
 

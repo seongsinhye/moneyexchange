@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@page import="javax.xml.bind.DatatypeConverter"%>
-<%@page import="java.security.MessageDigest"%>
-<%@page import="java.net.URLEncoder"%>
-<%@page import="java.util.Calendar"%>
+<%@page import="javax.xml.bind.DatatypeConverter" %>
+<%@page import="java.security.MessageDigest" %>
+<%@page import="java.net.URLEncoder" %>
+<%@page import="java.util.Calendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -33,8 +33,7 @@
     String userHash = "";
     String flgFixedUser = "N";              // 특정사용자 고정시 Y
 
-    if("Y".equals(flgFixedUser))
-    {
+    if ("Y".equals(flgFixedUser)) {
         String plainText2 = userName + mid + userPhone + mTxId + userBirth + reqSvcCd;
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(plainText2.getBytes("UTF-8"));
@@ -55,11 +54,9 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
     <script language="javascript">
-        function callSa()
-        {
+        function callSa() {
             let window = popupCenter();
-            if(window != undefined && window != null)
-            {
+            if (window != undefined && window != null) {
                 //document.saForm.setAttribute("target", "sa_popup");
                 document.saForm.setAttribute("post", "post");
                 document.saForm.setAttribute("action", "https://sa.inicis.com/auth");
@@ -70,10 +67,10 @@
         function popupCenter() {
             let _width = 400;
             let _height = 620;
-            var xPos = (document.body.offsetWidth/2) - (_width/2); // 가운데 정렬
+            var xPos = (document.body.offsetWidth / 2) - (_width / 2); // 가운데 정렬
             xPos += window.screenLeft; // 듀얼 모니터일 때
 
-            return window.open("", "sa_popup", "width="+_width+", height="+_height+", left="+xPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
+            return window.open("", "sa_popup", "width=" + _width + ", height=" + _height + ", left=" + xPos + ", menubar=yes, status=yes, titlebar=yes, resizable=yes");
         }
     </script>
 </head>
@@ -104,37 +101,38 @@
         <input type="text" name="failUrl" value="http://localhost:8080/moneyexchange/join" hidden>
         <!-- successUrl/failUrl 은 분리하여도 됩니다. !-->
     </form>
-    <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/join/input" modelAttribute="joinCommand">
+    <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/join/input"
+               modelAttribute="joinCommand">
         <div class="row g-3">
             <div class="col-12">
                 <label for="id" class="form-label">아이디</label>
-                <form:input path="id" cssClass="form-control" id="id" placeholder="id123" />
-                <form:errors path="id" />
+                <form:input path="id" cssClass="form-control" id="id" placeholder="id123" disabled="true"/>
+                <form:errors path="id"/>
             </div>
             <div class="col-12">
                 <label for="pw" class="form-label">비밀번호</label>
-                <form:password path="pw" cssClass="form-control" id="pw" placeholder="password123"/>
-                <form:errors path="pw" />
+                <form:password path="pw" cssClass="form-control" id="pw" placeholder="password123" disabled="true"/>
+                <form:errors path="pw"/>
             </div>
             <div class="col-12">
                 <label for="pw_check" class="form-label">비밀번호 확인</label>
-                <form:password path="pw_check" cssClass="form-control" id="pw_check" placeholder="비밀번호 다시 입력하세여"/>
-                <form:errors path="pw_check" />
+                <form:password path="pw_check" cssClass="form-control" id="pw_check" disabled="true" placeholder="비밀번호 다시 입력하세여"/>
+                <form:errors path="pw_check"/>
             </div>
             <div class="col-12">
                 <label for="name" class="form-label">이름</label>
-                <form:input path="name" cssClass="form-control" id="name" placeholder="길동이는 길동동동"/>
-                <form:errors path="name" />
+                <form:input path="name" cssClass="form-control" id="name" placeholder="길동이는 길동동동" disabled="true"/>
+                <form:errors path="name"/>
             </div>
             <div class="col-12">
                 <label for="tel" class="form-label">전화번호</label>
-                <form:input path="tel" cssClass="form-control" id="tel" placeholder="010-0000-0000"/>
-                <form:errors path="tel" />
+                <form:input path="tel" cssClass="form-control" id="tel" placeholder="010-0000-0000" disabled="true"/>
+                <form:errors path="tel"/>
             </div>
             <div class="col-12">
                 <label for="addr" class="form-label">주소</label>
-                <form:input path="addr" cssClass="form-control" id="addr" placeholder="서면로 10"/>
-                <form:errors path="addr" />
+                <form:input path="addr" cssClass="form-control" id="addr" placeholder="서면로 10" disabled="true"/>
+                <form:errors path="addr"/>
             </div>
         </div>
 

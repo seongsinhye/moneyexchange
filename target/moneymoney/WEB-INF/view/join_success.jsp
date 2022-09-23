@@ -20,16 +20,11 @@
 </head>
 <body>
 <%@include file="includes/header.jsp"%>
-
-
 <div class="col-md-7 col-lg-8" style="margin: auto;">
-
     <h4 class="mb-3">회원가입</h4>
     <hr class="my-4">
     <div>회원가입이 완료되었습니다!</div>
 </div>
-
 <%@include file="includes/footer.jsp"%>
-
 </body>
 </html>

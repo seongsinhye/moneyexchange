@@ -29,42 +29,41 @@
 
     <h4 class="mb-3">회원정보수</h4>
     <hr class="my-4">
-    <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/update/userinfo" modelAttribute="joinCommand">
+    <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/update/userinfo"
+               modelAttribute="joinCommand">
         <div class="row g-3">
             <div class="col-12">
                 <label for="id" class="form-label">아이디</label>
                 <form:input path="id" cssClass="form-control" id="id" value="${userInfo.id}" readonly="true"/>
-                <form:errors path="id" />
+                <form:errors path="id"/>
             </div>
             <div class="col-12">
                 <label for="pw" class="form-label">비밀번호</label>
                 <form:password path="pw" cssClass="form-control" id="pw" value="${userInfo.pw}"/>
-                <form:errors path="pw" />
+                <form:errors path="pw"/>
             </div>
             <div class="col-12">
                 <label for="pw_check" class="form-label">비밀번호 확인</label>
                 <form:password path="pw_check" cssClass="form-control" id="pw_check" placeholder="비밀번호 다시 입력하세여"/>
-                <form:errors path="pw_check" />
+                <form:errors path="pw_check"/>
             </div>
             <div class="col-12">
                 <label for="name" class="form-label">이름</label>
                 <form:input path="name" cssClass="form-control" id="name" value="${userInfo.name}"/>
-                <form:errors path="name" />
+                <form:errors path="name"/>
             </div>
             <div class="col-12">
                 <label for="tel" class="form-label">전화번호</label>
                 <form:input path="tel" cssClass="form-control" id="tel" value="${userInfo.tel}"/>
-                <form:errors path="tel" />
+                <form:errors path="tel"/>
             </div>
             <div class="col-12">
                 <label for="addr" class="form-label">주소</label>
                 <form:input path="addr" cssClass="form-control" id="addr" value="${userInfo.addr}"/>
-                <form:errors path="addr" />
+                <form:errors path="addr"/>
             </div>
         </div>
-
         <hr class="my-4">
-
         <form:button class="w-100 btn btn-primary btn-lg">정보수정하기</form:button>
     </form:form>
 
