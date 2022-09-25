@@ -115,13 +115,10 @@
 <%@include file="includes/header.jsp" %>
 
 
-<div class="col-md-7 col-lg-8" style="margin: auto;">
+<div class="container col-xxl-8 px-4 py-5">
 
-    <h4 class="mb-3">회원가입</h4>
-    <hr class="my-4">
-    <div>
-        <button type="submit" onclick="callSa()">본인인증</button>
-    </div>
+    <h2>회원가입</h2>
+    <hr>
     <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/join/input"
                modelAttribute="joinCommand">
         <div class="row g-3">
@@ -161,17 +158,7 @@
 
         <hr class="my-4">
 
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">Shipping address is the same as my billing
-                address</label>
-        </div>
-
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Save this information for next time</label>
-        </div>
-        <form:button class="w-100 btn btn-primary btn-lg">회원가입</form:button>
+        <form:button class="w-100 btn  btn-lg" style="background: rgb(255, 219, 68);">회원가입</form:button>
     </form:form>
 
 </div>

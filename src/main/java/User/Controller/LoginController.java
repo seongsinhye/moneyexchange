@@ -79,6 +79,7 @@ public class LoginController {
         model.addAttribute("loginCommand", new LoginCommand());
         return "login";
     }
+
     //직접 입력 로그인
     @PostMapping("/login/self")
     public String selfLogin(@ModelAttribute("loginCommand") LoginCommand loginCommand,

@@ -15,46 +15,37 @@ public class NoticeService {
         this.noticeDao = noticeDao;
     }
 
+    //공지사항 추가
     public void add(NoticeInfo noticeInfo){
-
-        NoticeInfo newNotcie = new NoticeInfo(noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
-
-
-        noticeDao.insert(newNotcie);
-
+        NoticeInfo newNotice = new NoticeInfo(noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
+        noticeDao.insert(newNotice);
     }
 
+    //공지사항 갯수 조회
     public int getAmount(){
         int amount =  noticeDao.getAmount();
-
         return amount;
     }
 
+    //해당 페이지 넘버에 맞는 공지사항 내역 조회
     public List<NoticeInfo> getNoticeInfoList(int pageNumber){
         pageNumber = (pageNumber - 1) * 10;
-
-
-
-
         List<NoticeInfo> noticeInfoList =  noticeDao.selectAll(pageNumber);
-
         return noticeInfoList;
-
     }
 
+    //공지사항 상세 내역 조회
     public NoticeInfo getNoticeInfo(int noticeIdx){
-
         NoticeInfo noticeInfo = noticeDao.selectNotice(noticeIdx);
-
         return noticeInfo;
     }
 
+    //공지사항 수정
     public void getNewNoticeInfo(NoticeInfo noticeInfo){
-
         noticeDao.updateNotice(noticeInfo);
-
     }
 
+    //공지사항 삭제
     public void noticeDelete(int noticeIdx){
         noticeDao.noticeDelete(noticeIdx);
     }

@@ -31,7 +31,7 @@
         <div class="col-lg-6" style="margin: auto;">
             <c:if test="${not empty loginSession}">
                 <form action="${pageContext.request.contextPath}/delete/userInfo"
-                           cssClass="p-4 p-md-5 border rounded-3 bg-light" method="post">
+                      cssClass="p-4 p-md-5 border rounded-3 bg-light" method="post">
                     <div class="mb-3">
                         <label for="pw">비밀번호</label>
                         <input type="password" id="pw" name="pw">

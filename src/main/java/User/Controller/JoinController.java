@@ -51,8 +51,8 @@ public class JoinController {
     @PostMapping("/join/input")
     public String join_input(Model model, JoinCommand joinCommand, Errors errors) {
 
+        //입력값 검증
         new JoinValidator().validate(joinCommand, errors);
-
         if (errors.hasErrors()) {
             return "join";
         }
@@ -61,7 +61,9 @@ public class JoinController {
             errors.rejectValue("id", "duplicate");
             return "join";
         } else {
+
             try {
+                //회원가입
                 joinService.join(joinCommand);
                 return "join_success";
 
@@ -73,22 +75,26 @@ public class JoinController {
 
     }
 
+    //회원 탈퇴 뷰 보여주기
     @GetMapping("/delete/userInfo/view")
     public String view_deleteUserInfo() {
         return "delete";
     }
 
+    //회원 탈퇴
     @PostMapping("/delete/userInfo")
     public String deleteUserInfo(@RequestParam("pw") String pw, HttpSession session) {
 
+        //세션 정보 가져오기
         LoginSession loginSession = (LoginSession) session.getAttribute("loginSession");
+
+        //삭제에 성공했다면
         if (joinService.delete_userInfo(loginSession.getId(), pw)) {
+            //저장된 세션 삭제
             session.removeAttribute("loginSession");
-            return "main";
+            return "main";  //메인 페이지
         } else {
-            return "delete";
+            return "delete"; //회원 탈퇴 페이지로
         }
-
-
     }
 }

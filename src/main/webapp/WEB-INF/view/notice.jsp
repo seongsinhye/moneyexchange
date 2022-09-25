@@ -25,11 +25,13 @@
 <body>
 <%@include file="includes/header.jsp" %>
 
-<div class="container">
-    <h1 style="text-align: center;
-        margin: 50px 0px 40px 0px;">공지사항</h1>
+<div class=" container col-xxl-8 px-4 py-5">
+    <h2 style="display: inline; margin-right: 10px;">공지사항</h2><a href="${pageContext.request.contextPath}/notice/form">
+    <button style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">공지사항 작성하기
+    </button>
+</a>
 
-    <a href="http://localhost:8080/moneyexchange/notice/form">공지사항 작성하기</a>
+    <hr>
     <c:if test="${empty noticeInfoList}">
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action ">
@@ -40,7 +42,7 @@
     </c:if>
     <c:forEach items="${noticeInfoList}" var="noticeInfo">
     <div class="list-group">
-        <a href="http://localhost:8080/moneyexchange/notice/detail?noticeIdx=${noticeInfo.noticeIdx}"
+        <a href=${pageContext.request.contextPath}/notice/detail?noticeIdx=${noticeInfo.noticeIdx}"
            class="list-group-item list-group-item-action ">
                 ${noticeInfo.noticeTitle}
         </a>
@@ -50,8 +52,9 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination" style="margin-top: 1rem;">
                 <c:forEach begin="1" end="${Math.ceil(amount/10)}" var="number">
-                    <li class="page-item"><a class="page-link"
-                                             href="http://localhost:8080/moneyexchange/notice?pageNumber=${number}">${number}</a>
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="${pageContext.request.contextPath}/notice?pageNumber=${number}">${number}</a>
                     </li>
                 </c:forEach>
             </ul>

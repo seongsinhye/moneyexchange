@@ -44,14 +44,21 @@
 <body>
 <%@include file="includes/header.jsp"%>
 <div class="container col-xxl-8 px-4 py-5">
+    <h2>로그인</h2>
+    <hr>
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-lg-6" style="margin: auto;">
+        <div class="" style="margin: auto;">
             <c:if test="${not empty loginSession}">
                 <div class="p-4 p-md-5 border rounded-3 bg-light">
                     <div>${loginSession.name}(${loginSession.id})님 반갑습니다. </div>
-                    <a href="${pageContext.request.contextPath}/logout">
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">로그아웃</button>
-                    </a>
+                    <div>
+                        <a href="${pageContext.request.contextPath}/logout">
+                            <button style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);" type="submit">로그아웃</button>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/userinfo">
+                            <button  style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);" type="submit">정보수정하기</button>
+                        </a>
+                    </div>
                 </div>
             </c:if>
             <c:if test="${empty loginSession}">
@@ -71,13 +78,8 @@
                             <form:checkbox path="remember_me" />Remember me
                         </label>
                     </div>
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-                    <a href="${url}">
-                        <div class="naver_login_wrapper" id="">
-                            <img id="naver_login"
-                                 src="${pageContext.request.contextPath}/img/btnG_완성형.png" alt="">
-                        </div>
-                    </a>
+                    <button class="w-100 btn btn-lg" type="submit" style=" background: rgb(255, 219, 68);">로그인</button>
+
                     <hr class="my-4">
                     <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                 </form:form>

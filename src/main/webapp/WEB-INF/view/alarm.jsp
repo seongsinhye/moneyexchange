@@ -21,12 +21,13 @@
 </head>
 <body>
 <%@include file="includes/header.jsp" %>
-<section style="margin-left: 500px; margin-top: 80px;">
-    <div class="inner">
-        <h1 class="ta-l innerTxt" style="margin-top: 30px;">환율알림서비스</h1>
+<section class="container col-xxl-8 px-4 py-5">
+    <div class="">
+        <h1>환율알림서비스</h1>
+        <hr>
     </div>
 
-    <div class="exchange_alarm">
+    <div class="exchange_alarm ">
         <div>
             <h3>환율서비스란 ? </h3>
             <p>일정 기간 내에 고객님께서 등록하신 환율범위 내로 환율이 도달하는 경우, <br>
@@ -38,8 +39,11 @@
             <h3>알림안내</h3>
             <p>알림전송조건: 일정 기간 내에 등록하신 환율범위 내로 환율이 도달하는 경우<br>
                 알림시간/방법: 09:10 ~ 16:00, 문자메시지(SMS) 또는 이메일 안내</p>
+            <hr>
             <div id="btn_wrapper">
-                <button type="button" id="goToList" class="goToList_btn">신청하기</button>
+                <button type="button" id="goToList" class="goToList_btn"
+                        style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">신청하기
+                </button>
             </div>
         </div>
     </div>

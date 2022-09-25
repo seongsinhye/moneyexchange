@@ -23,11 +23,18 @@
 </head>
 <body>
 <%@include file="includes/header.jsp" %>
+<script>
+    <c:if test="${result==true}">
+    alert("회원 정보를 수정하였습니다. ")
+    </c:if>
+    <c:if test="${result==false}">
+    alert("회원 정보를 수정에 실패하였습니다. ")
+    </c:if>
+</script>
 
+<div class="container col-xxl-8 px-4 py-5">
 
-<div class="col-md-7 col-lg-8" style="margin: auto;">
-
-    <h4 class="mb-3">회원정보수</h4>
+    <h2>회원 정보 수정</h2>
     <hr class="my-4">
     <form:form cssClass="needs-validation" action="${pageContext.request.contextPath}/update/userinfo"
                modelAttribute="joinCommand">
@@ -64,7 +71,7 @@
             </div>
         </div>
         <hr class="my-4">
-        <form:button class="w-100 btn btn-primary btn-lg">정보수정하기</form:button>
+        <form:button class="w-100 btn btn-lg" style="background: rgb(255, 219, 68);">정보수정하기</form:button>
     </form:form>
 
 </div>

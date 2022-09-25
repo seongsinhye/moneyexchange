@@ -33,29 +33,31 @@
 </head>
 <body>
 <%@include file="includes/header.jsp" %>
-
+<div class="container col-xxl-8 px-4 py-5">
 <form action="${pageContext.request.contextPath}/search/total" method="get">
-    <div class="container col-xxl-8 px-4 py-5">
-        <div style="margin-left: 280px;">
-            <h3>전체통화</h3>
 
-            <div style="margin: 20px 0 20px 0;">
-                <label> 조회일 예시 20220919 형식으로 작성해주세요.
-                    <input type="text" name="day">
-                </label>
+        <div >
+            <h3>전체환율조회</h3>
+            <hr>
+            <div class="border">
+                조회일을 입력하고 조회하기를 누르면 현재시간 기준의 전체통화 환율 목록을 조회할 수 있습니다.
             </div>
+            <div>
+                <label for="day">조회일</label>
+                <input type="text" name="day" id="day" placeholder="20220919">
+                <input type="submit" value="조회하기" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">
+            </div>
+
         </div>
-        <input type="submit" value="조회" style="margin-left: 425px; font-size: 24px;">
-    </div>
+
 </form>
-<hr style="margin-top: 100px;">
-<div class="table-responsive exchange-list" style="margin-left: 180px;">
-
-
-    <h3> 환율 정보 </h3>
-    <p>${today} </p>
-    <table class="table table-striped table-sm " style="width: 700px;">
-        <thead>
+</div>
+<c:if test="${not empty exchangeInfoList}">
+    <div class="table-responsive exchange-list container px-4 col-xxl-8" style="margin-top: 100px;">
+        <h3> 환율 정보 </h3>
+        <p>${day} </p>
+        <table class="table table-striped table-sm " >
+            <thead>
             <tr>
                 <th scope="col">통화종류</th>
                 <th scope="col">통화종류</th>
@@ -63,23 +65,25 @@
                 <th scope="col">현찰(살때)</th>
                 <th scope="col">현찰(팔떄)</th>
             </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="exchangeInfo" items="${exchangeInfoList}">
-            <tr>
-                <td>${exchangeInfo.cur_unit}</td>
-                <td>${exchangeInfo.cur_nm}</td>
-                <td>${exchangeInfo.deal_bas_r}</td>
-                <td>${exchangeInfo.ttb}</td>
-                <td>${exchangeInfo.tts}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            <c:forEach var="exchangeInfo" items="${exchangeInfoList}">
+                <tr>
+                    <td>${exchangeInfo.cur_unit}</td>
+                    <td>${exchangeInfo.cur_nm}</td>
+                    <td>${exchangeInfo.deal_bas_r}</td>
+                    <td>${exchangeInfo.ttb}</td>
+                    <td>${exchangeInfo.tts}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
 
-</div>
+    </div>
+</c:if>
+
 <%@include file="includes/footer.jsp" %>
 
 

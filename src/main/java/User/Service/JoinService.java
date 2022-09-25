@@ -15,13 +15,17 @@ public class JoinService {
         this.memberInfo_tb_dao = memberInfo_tb_dao;
     }
 
+    //사용가능한 아이디인지 판단
     public boolean idPossibleId(String id){
         return memberInfo_tb_dao.check_id(id);
     }
+
+    //회원 가입하기
     public void join(JoinCommand joinCommand){
         memberInfo_tb_dao.insert(joinCommand);
     }
 
+    //회원 탈퇴하기
     public boolean delete_userInfo(String id, String pw){
         return memberInfo_tb_dao.DeleteUserInfo(id, pw);
     }

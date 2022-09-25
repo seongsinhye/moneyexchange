@@ -32,8 +32,8 @@
   <%@include file="includes/header.jsp"%>
 
 
-<div class="container">
-  <h1>공지사항</h1>
+<div class="container col-xxl-8 px-4 py-5">
+  <h2>공지사항</h2>
 
   <c:if test="${empty param.noticeIdx}">
     <div id="wrapper" class=" ">
@@ -73,7 +73,7 @@
         </div>
         <div id="btn_wrapper">
           <button type="submit" id="goToSubmit" class="goToList_btn">수정하기</button>
-          <a href="http://localhost:8080/moneyexchange/notice/delete?noticeIdx=${noticeInfo.noticeIdx}"> <button type="button" class="goToList_btn">삭제하기</button></a>
+          <a href="${pageContext.request.contextPath}/notice/delete?noticeIdx=${noticeInfo.noticeIdx}"> <button type="button" class="goToList_btn">삭제하기</button></a>
         </div>
       </form:form>
     </div>

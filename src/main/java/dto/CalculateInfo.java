@@ -8,8 +8,6 @@ public class CalculateInfo {
     public Integer percentage;
     public double return_money;
 
-    public CalculateInfo() {
-    }
 
     public CalculateInfo(String when, String types, Integer money, Integer percentage, double return_money) {
         this.when = when;

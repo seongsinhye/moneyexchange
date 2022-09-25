@@ -17,11 +17,13 @@ public class UserService {
         this.memberInfo_tb_dao = memberInfo_tb_dao;
     }
 
+    //사용자 정보 조회
     public UserInfo select_userInfo(LoginSession loginSession){
         return memberInfo_tb_dao.select_userinfo(loginSession);
     }
 
-    public void update_userInfo(JoinCommand joinCommand){
-        memberInfo_tb_dao.update_userInfo(joinCommand);
+    //사용자 정보 수정
+    public int update_userInfo(JoinCommand joinCommand){
+       return memberInfo_tb_dao.update_userInfo(joinCommand);
     }
 }

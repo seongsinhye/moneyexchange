@@ -48,9 +48,19 @@ public class UserController {
             return "userInfo";
         }
 
-        userService.update_userInfo(joinCommand);
-        UserInfo userInfo = userService.select_userInfo(loginSession);
-        model.addAttribute("userInfo", userInfo);
+        int result = userService.update_userInfo(joinCommand);
+
+        if (result==0){
+            model.addAttribute("result", false);
+        }else {
+            UserInfo userInfo = userService.select_userInfo(loginSession);
+            session.removeAttribute("loginSession");
+            loginSession = new LoginSession(userInfo.getId(), userInfo.getName());
+            session.setAttribute("loginSession", loginSession);
+            model.addAttribute("result", true);
+            model.addAttribute("userInfo", userInfo);
+        }
+
 
 
         return "userInfo";

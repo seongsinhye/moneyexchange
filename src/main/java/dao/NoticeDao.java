@@ -25,11 +25,13 @@ public class NoticeDao {
     }
 
 
+    //공지사항 삭제
     public void insert(NoticeInfo noticeInfo){
         jdbcTemplate.update("INSERT INTO notice(noticeTitle, noticeContent,noticeWriter) values (?,?,?)",
                 noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
     }
 
+    //전체 공지사항 내역 조회
     public List<NoticeInfo> selectAll(int start) {
         String sql = "SELECT * from notice ORDER BY noticeInsertDate DESC LIMIT ?, 10";
 
@@ -56,6 +58,7 @@ public class NoticeDao {
     }
 
 
+    //공지사항 상세 내역 조회
     public NoticeInfo selectNotice(int noticeIdx) {
         String sql = "SELECT * from notice WHERE noticeIdx = ?";
 
@@ -81,6 +84,7 @@ public class NoticeDao {
         return results.isEmpty() ? null : results.get(0);
     }
 
+    //공지사항 갯수 조회
     public int getAmount(){
 
         int count = 0;
@@ -90,6 +94,7 @@ public class NoticeDao {
         return count;
     }
 
+    //공지사항 수정
     public void updateNotice(NoticeInfo noticeInfo){
         jdbcTemplate.update("UPDATE notice SET noticeTitle = ?, noticeContent = ? WHERE noticeIdx = ?",
                 noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeIdx());
@@ -97,6 +102,7 @@ public class NoticeDao {
 
     }
 
+    //공지사항 삭제
     public void noticeDelete(int noticeIdx){
         jdbcTemplate.update("DELETE FROM notice WHERE noticeIdx = ?", noticeIdx);
     }

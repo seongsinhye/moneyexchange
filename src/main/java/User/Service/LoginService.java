@@ -16,6 +16,7 @@ public class LoginService {
         this.memberInfo_tb_dao = memberInfo_tb_dao;
     }
 
+    //로그인
     public UserInfo loginService(LoginCommand loginCommand){
         UserInfo userInfo = memberInfo_tb_dao.loginCheck(loginCommand);
         return userInfo;

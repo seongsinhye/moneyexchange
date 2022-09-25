@@ -26,61 +26,64 @@
 </head>
 <body>
 <%@include file="includes/header.jsp" %>
-<form action="http://localhost:8080/moneyexchange/search/type" method="get">
+
     <div class="container col-xxl-8 px-4 py-5">
-        <div style="margin-left: 280px;">
+        <form action="http://localhost:8080/moneyexchange/search/type" method="get">
+        <div>
             <h3>통화별 검색 </h3>
-            <label> 통화종류
-                <select class="form-select" aria-label="Default select example" name="type">
-                    <option value="USD">USD (미국 달러)</option>
-                    <option value="JPY(100)">JPY (일본 100엔)</option>
-                    <option value="EUR">EUR (유럽연합 유로)</option>
-                </select>
-            </label>
+            <hr>
+            <div class="border">
+                통화종류와 조회일을 입력하면 해당일의 해당통화 환율을 조회할 수 있습니다.
+            </div>
+            <label for="type"> 통화종류</label>
+            <select class="form-select" aria-label="Default select example" name="type" id="type" style="margin-bottom: 20px">
+                <option value="USD">USD (미국 달러)</option>
+                <option value="JPY(100)">JPY (일본 100엔)</option>
+                <option value="EUR">EUR (유럽연합 유로)</option>
+            </select>
+
         </div>
         <div>
-            <div style="margin: 20px 0 20px 0;">
-                <label> 조회일 예시 20220919 형식으로 작성해주세요.
-                    <input type="text" name="day">
-                </label>
+            <div>
+                <label for="day">조회일</label>
+                <input type="text" name="day" id="day" placeholder="20220919">
+                <input type="submit" value="조회하기" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">
             </div>
         </div>
-        <input type="submit" value="조회" style=" margin-left: 425px;font-size: 24px;">
+        </form>
     </div>
-</form>
 
 
-<hr style="margin-top: 20px;">
-<div class="table-responsive exchange-list" style="margin-left: 180px;">
-    <h3> 환율 정보 </h3>
-    <table class="table table-striped table-sm " style="width: 700px;">
-        <thead>
-        <tr>
-            <th scope="col">통화종류</th>
-            <th scope="col">통화종류</th>
-            <th scope="col">매매기준율</th>
-            <th scope="col">현찰(살때)</th>
-            <th scope="col">현찰(팔때)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:if test="${empty exchangeInfoList}">
+<c:if test="${not empty exchangeInfoList}">
+    <div class="table-responsive exchange-list col-xxl-8 container" >
+        <h3> 환율 정보 </h3>
+        <table class="table table-striped table-sm " >
+            <thead>
             <tr>
-                <td>서비스 가능 시간이 아닙니다.</td>
+                <th scope="col">통화종류</th>
+                <th scope="col">통화종류</th>
+                <th scope="col">매매기준율</th>
+                <th scope="col">현찰(살때)</th>
+                <th scope="col">현찰(팔때)</th>
             </tr>
-        </c:if>
-        <c:forEach items="${exchangeInfoList}" var="exchangeInfo">
-            <tr>
-                <td>${exchangeInfo.cur_unit}</td>
-                <td>${exchangeInfo.cur_nm}</td>
-                <td>${exchangeInfo.deal_bas_r}</td>
-                <td>${exchangeInfo.ttb}</td>
-                <td>${exchangeInfo.tts}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+
+            <c:forEach items="${exchangeInfoList}" var="exchangeInfo">
+                <tr>
+                    <td>${exchangeInfo.cur_unit}</td>
+                    <td>${exchangeInfo.cur_nm}</td>
+                    <td>${exchangeInfo.deal_bas_r}</td>
+                    <td>${exchangeInfo.ttb}</td>
+                    <td>${exchangeInfo.tts}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</c:if>
+
+
 <%@include file="includes/footer.jsp" %>
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
 </body>

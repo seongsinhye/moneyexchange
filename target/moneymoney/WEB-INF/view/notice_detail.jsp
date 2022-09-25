@@ -29,8 +29,8 @@
 </head>
 <body>
 <%@include file="includes/header.jsp" %>
-<div class="container">
-    <h1>공지사항</h1>
+<div class="container col-xxl-8 px-4 py-5">
+    <h2>공지사항</h2>
     <div id="wrapper">
         <div id="title_wrapper" class="title_txt line two_area">
             <input type="hidden" name="noticeIdx" value="${noticeInfo.noticeIdx}">
@@ -43,14 +43,14 @@
             <p name="noticeContent"> ${noticeInfo.noticeContent} </p>
         </div>
         <div id="file_wrapper" class="line">
-            <img src="../img/img.png" alt=""><a href="#">첨부파일</a>
+            <img src="${pageContext.request.contextPath}/img/img.png" alt=""><a href="#">첨부파일</a>
         </div>
         <div id="btn_wrapper" class="line">
-            <a href="http://localhost:8080/moneyexchange/notice">
-                <button type="button" id="goToList" class="goToList_btn">목록으로</button>
+            <a href="${pageContext.request.contextPath}/notice">
+                <button type="button" id="goToList" class="goToList_btn" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">목록으로</button>
             </a>
-            <a href="http://localhost:8080/moneyexchange/notice/update/page?noticeIdx=${noticeInfo.noticeIdx}">
-                <button type="button" class="goToList_btn">수정하기</button>
+            <a href="${pageContext.request.contextPath}/notice/update/page?noticeIdx=${noticeInfo.noticeIdx}">
+                <button type="button" class="goToList_btn" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">수정하기</button>
             </a>
         </div>
     </div>
