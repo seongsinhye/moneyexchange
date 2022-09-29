@@ -40,11 +40,13 @@
             <p>알림전송조건: 일정 기간 내에 등록하신 환율범위 내로 환율이 도달하는 경우<br>
                 알림시간/방법: 09:10 ~ 16:00, 문자메시지(SMS) 또는 이메일 안내</p>
             <hr>
-            <div id="btn_wrapper">
-                <button type="button" id="goToList" class="goToList_btn"
-                        style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">신청하기
-                </button>
-            </div>
+            <a href="${pageContext.request.contextPath}/application">
+                <div id="btn_wrapper">
+                    <button type="button" id="goToList" class="goToList_btn"
+                            style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">신청하기
+                    </button>
+                </div>
+            </a>
         </div>
     </div>
 </section>

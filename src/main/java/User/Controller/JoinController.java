@@ -49,28 +49,35 @@ public class JoinController {
     }
 
     @PostMapping("/join/input")
-    public String join_input(Model model, JoinCommand joinCommand, Errors errors) {
+    public String join_input(Model model, JoinCommand joinCommand, Errors errors, HttpSession session) {
 
-        //입력값 검증
-        new JoinValidator().validate(joinCommand, errors);
-        if (errors.hasErrors()) {
-            return "join";
-        }
-
-        if (!joinService.idPossibleId(joinCommand.getId())) {
-            errors.rejectValue("id", "duplicate");
-            return "join";
-        } else {
-
-            try {
-                //회원가입
-                joinService.join(joinCommand);
-                return "join_success";
-
-            } catch (CantMakeUserInfoException e) {
-                return "join";
+        if(session.getAttribute("sns")==null){
+            //입력값 검증
+            new JoinValidator().validate(joinCommand, errors);
+            if (errors.hasErrors()) {
+                return "join2";
             }
+            if (!joinService.idPossibleId(joinCommand.getId())) {
+                errors.rejectValue("id", "duplicate");
+                return "join2";
+            } else {
+
+                try {
+                    //회원가입
+                    joinService.join(joinCommand);
+                    return "join_success";
+
+                } catch (CantMakeUserInfoException e) {
+                    return "join2";
+                }
+            }
+        }else {
+            joinService.update_userInfo(joinCommand);
+            return "join_success";
         }
+
+
+
 
 
     }

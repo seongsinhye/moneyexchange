@@ -1,5 +1,6 @@
 package Controller;
 
+
 import dto.NoticeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import service.NoticeService;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
-import java.util.List;
 
 @Controller
 public class NoticeController {
@@ -20,6 +24,8 @@ public class NoticeController {
     public NoticeController(NoticeService noticeService) {
         this.noticeService = noticeService;
     }
+
+
 
 
     //공지사항 조회 후 view 페이지 보여주기
@@ -40,16 +46,56 @@ public class NoticeController {
 
     //공지사항 작성 view 페이지 보여주기
     @GetMapping("/notice/form")
-    public String list() {
+    public String list(Model model) {
+
+        model.addAttribute("noticeInfo", new NoticeInfo());
         return "notice_form";
     }
 
     //공지사항 추가
-    @GetMapping("/notice/Add")
-    public String noticeAdd(NoticeInfo noticeInfo) {
 
-        //공지사항 추가
-        noticeService.add(noticeInfo);
+    @PostMapping("/notice/Add")
+    public String noticeAdd(NoticeInfo noticeInfo, @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+
+        if(file.isEmpty()){
+
+        }
+        String fileRealName = file.getOriginalFilename();
+        long size = file.getSize();
+
+        System.out.println("파일명 = " + fileRealName);
+        System.out.println("용량크기(byte) = " + size);
+
+        String fileExtenstion = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+        String uploadFolder = "/Users/gangjiyeon/IdeaProjects/moneyexchange2/src/main/webapp/img";
+
+
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid.toString());
+        String[] uuids = uuid.toString().split("-");
+
+        String uniqueName = uuids[0];
+        System.out.println("생성된 고유문자열 = " + uniqueName);
+        System.out.println("확장자명 = " + fileExtenstion);
+
+        File saveFile = new File(uploadFolder+"//"+uniqueName+fileExtenstion);
+
+        try{
+            file.transferTo(saveFile);
+            noticeInfo.setFileName(uniqueName+fileExtenstion);
+            noticeService.add(noticeInfo, uniqueName+fileExtenstion);
+
+
+        }catch (IllegalStateException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+
+
+
         return "redirect:/notice";
     }
 

@@ -35,14 +35,16 @@
             <hr>
 
             <label for="when"> 환전 계산 방식</label>
-            <select class="form-select" aria-label="Default select example" id="when" name="when" style="margin-bottom: 20px">
+            <select class="form-select" aria-label="Default select example" id="when" name="when"
+                    style="margin-bottom: 20px">
                 <option value="ttb">현찰 살때</option>
                 <option value="tts">현찰 팔때</option>
             </select>
 
 
             <label for="type"> 통화종류</label>
-            <select class="form-select" aria-label="Default select example" id="type" name="type" style="margin-bottom: 20px">
+            <select class="form-select" aria-label="Default select example" id="type" name="type"
+                    style="margin-bottom: 20px">
                 <option value="USD">USD (미국 달러)</option>
                 <option value="JPY(100)">JPY (일본 100엔)</option>
                 <option value="EUR">EUR (유럽연합 유로)</option>

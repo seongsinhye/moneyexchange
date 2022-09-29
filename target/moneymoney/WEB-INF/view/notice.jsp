@@ -27,7 +27,9 @@
 
 <div class=" container col-xxl-8 px-4 py-5">
     <h2 style="display: inline; margin-right: 10px;">공지사항</h2><a href="${pageContext.request.contextPath}/notice/form">
-    <button style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">공지사항 작성하기</button></a>
+    <button style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">공지사항 작성하기
+    </button>
+</a>
 
     <hr>
     <c:if test="${empty noticeInfoList}">
@@ -52,7 +54,7 @@
                 <c:forEach begin="1" end="${Math.ceil(amount/10)}" var="number">
                     <li class="page-item">
                         <a class="page-link"
-                                             href="${pageContext.request.contextPath}/notice?pageNumber=${number}">${number}</a>
+                           href="${pageContext.request.contextPath}/notice?pageNumber=${number}">${number}</a>
                     </li>
                 </c:forEach>
             </ul>

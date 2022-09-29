@@ -1,6 +1,7 @@
 
 package Ctx;
 
+import dao.AlarmDao;
 import dao.NoticeDao;
 import User.Dao.MemberInfo_tb_Dao;
 import User.Service.JoinService;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
+import service.AlarmService;
 import service.NoticeService;
 
 @Configuration
@@ -21,9 +23,9 @@ public class DatabaseCtx {
         DataSource ds = new DataSource();
 
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/moneyExchange");
+        ds.setUrl("jdbc:mysql://ec2-3-39-230-54.ap-northeast-2.compute.amazonaws.com:3306/moneyExchange");
         ds.setUsername("root");
-        ds.setPassword("67201702");
+        ds.setPassword("vldksh1207!");
 
         return ds;
     }
@@ -39,6 +41,19 @@ public class DatabaseCtx {
         noticeService.setNoticeDao(noticeDao());
         return  noticeService;
     }
+
+    @Bean
+    public AlarmDao alarmDao(){
+        return new AlarmDao(dataSource());
+    }
+
+    @Bean
+    public AlarmService alarmService(){
+        AlarmService alarmService = new AlarmService();
+        alarmService.setAlarmDao(alarmDao());
+        return  alarmService;
+    }
+
 
     @Bean
     public PlatformTransactionManager transactionManager(){

@@ -62,7 +62,7 @@ public class LoginController {
 
         String reqUrl =
                 "https://kauth.kakao.com/oauth/authorize"
-                        + "?client_id=7b08064aebeb5d53440182eabe007d83"
+                        + "?client_id=186630c4901e7246633ecb0c86dd5594"
                         + "&redirect_uri=http://localhost:8080/moneyexchange/login/oauth_kakao"
                         + "&response_type=code";
 
@@ -126,6 +126,7 @@ public class LoginController {
         }
     }
 
+
     //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "/login_success", method = {RequestMethod.GET, RequestMethod.POST})
     public String callback(Model model,
@@ -166,12 +167,31 @@ public class LoginController {
         String user_name = (String) response_obj.get("name") ;
         String phone = (String) response_obj.get("mobile");
 
+        JoinCommand joinCommand = new JoinCommand();
+        joinCommand.setId(user_id);
+        joinCommand.setName(user_name);
+        joinCommand.setTel(phone);
 
-        loginSession = new LoginSession(user_id, user_name);
-        session.setAttribute("loginSession", loginSession);
+
+
+
         model.addAttribute("result", apiResult);
-        return "login_success";
+
+        if(loginService.idPossibleId(user_id)){
+            loginService.join(joinCommand);
+            session.setAttribute("sns", "naver");
+
+            model.addAttribute("joinCommand", joinCommand);
+            return "join2";
+        }else {
+            loginSession = new LoginSession(user_id, user_name);
+            session.setAttribute("loginSession", loginSession);
+            return "login_success";
+        }
+
+
     }
+
 
     //<--------------------------카카오-------------------------->
     // 카카오 연동정보 조회
@@ -183,10 +203,28 @@ public class LoginController {
         HashMap<String, Object> userInfo = getUserInfo(access_Token);
 
         String name = (String) userInfo.get("user_name");
-        String id = (String) userInfo.get("accessToken");
+        String id = (String) userInfo.get("email");
+        boolean sns = true;
 
         LoginSession loginSession = new LoginSession(id, name);
         session.setAttribute("loginSession", loginSession);
+        session.setAttribute("sns", "kakao");
+
+        if(loginService.idPossibleId(id)){
+            JoinCommand joinCommand = new JoinCommand();
+            joinCommand.setName(name);
+            joinCommand.setId(id);
+
+            loginService.join(joinCommand);
+            model.addAttribute("joinCommand", joinCommand);
+            return "join2";
+        }
+
+
+
+
+
+
 
         return "/login_success"; //본인 원하는 경로 설정
     }
@@ -210,8 +248,8 @@ public class LoginController {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=7b08064aebeb5d53440182eabe007d83");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8080/Z/login/oauth_kakao");     // 본인이 설정해 놓은 경로
+            sb.append("&client_id=186630c4901e7246633ecb0c86dd5594");  //본인이 발급받은 key
+            sb.append("&redirect_uri=http://localhost:8080/moneyexchange/login/oauth_kakao");     // 본인이 설정해 놓은 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
@@ -284,16 +322,17 @@ public class LoginController {
             System.out.println("properties=" + properties);
             System.out.println("kakao=" + kakao_account);
 
-            String img = properties.getAsJsonObject().get("profile_image").getAsString();
-            String email = kakao_account.getAsJsonObject().get("email").getAsString();
-            String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
+            String user_name = properties.getAsJsonObject().get("nickname").getAsString();
+
+            if(kakao_account.getAsJsonObject().get("email").getAsString().equals("true")){
+                String email = kakao_account.getAsJsonObject().get("email").getAsString();
+                userInfo.put("id", email);
+            }
+
 
             userInfo.put("accessToken", access_Token);
-            userInfo.put("user_name", email);
-            userInfo.put("img", img);
-            userInfo.put("birthday", birthday);
-            userInfo.put("sns", "kakao");
-            userInfo.put("email", email);
+            userInfo.put("user_name", user_name);
+
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

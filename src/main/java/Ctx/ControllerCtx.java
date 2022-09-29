@@ -10,6 +10,7 @@ import User.Service.LoginService;
 import User.Service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import service.AlarmService;
 import service.NoticeService;
 
 @Configuration
@@ -21,10 +22,7 @@ public class ControllerCtx {
         return new ExController();
     }
 
-    @Bean
-    public AlarmController alarmController() {
-        return new AlarmController();
-    }
+
 
     @Bean
     public CalculatorController calculatorController() {
@@ -70,8 +68,19 @@ public class ControllerCtx {
     }
 
     private NoticeService noticeService;
+
     @Bean
-    public NoticeController noticeController() {
-        return new NoticeController(noticeService);
+    public  NoticeController noticeController() {
+        NoticeController noticeController = new NoticeController(noticeService);
+        return noticeController;
+    }
+
+    private AlarmService alarmService;
+
+    @Bean
+    public AlarmController alarmController() {
+        AlarmController alarmController = new AlarmController();
+        alarmController.setAlarmService(alarmService);
+        return alarmController;
     }
 }

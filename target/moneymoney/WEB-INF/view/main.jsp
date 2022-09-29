@@ -17,14 +17,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
     <style>
 
     </style>
 </head>
 <body>
-<%@include file="includes/header.jsp"%>
+<%@include file="includes/header.jsp" %>
 
 <div class="container col-xxl-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -47,15 +50,17 @@
                 <br>
                 ※ 팀 프로젝트: 인원 2명(백엔드) / 프론트는 각자 진행
             </div>
-            <a href="https://github.com/seongsinhye/moneyexchange" >
-                <button class="w-100 btn btn-lg" type="submit" style=" background: rgb(255, 219, 68);">깃 허브 READ ME 바로가기</button>
+            <a href="https://github.com/seongsinhye/moneyexchange">
+                <button class="w-100 btn btn-lg" type="submit" style=" background: rgb(255, 219, 68);">깃 허브 READ ME
+                    바로가기
+                </button>
             </a>
 
         </div>
     </div>
 </div>
 
-<%@include file="includes/footer.jsp"%>
+<%@include file="includes/footer.jsp" %>
 
 </body>
 </html>

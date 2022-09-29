@@ -2,31 +2,34 @@ package User.Dto;
 
 public class UserInfo {
 
-    private Integer memberIdx;
+
     private String id;
     private String pw;
     private String name;
     private String tel;
     private String addr;
 
+    private Boolean sns;
+
     public UserInfo() {
     }
 
-    public UserInfo(Integer memberIdx, String id, String pw, String name, String tel, String addr) {
-        this.memberIdx = memberIdx;
+    public UserInfo( String id, String pw, String name, String tel, String addr, Boolean sns) {
         this.id = id;
         this.pw = pw;
         this.name = name;
         this.tel = tel;
         this.addr = addr;
+        this.sns = sns;
     }
 
-    public Integer getMemberIdx() {
-        return memberIdx;
+
+    public Boolean getSns() {
+        return sns;
     }
 
-    public void setMemberIdx(Integer memberIdx) {
-        this.memberIdx = memberIdx;
+    public void setSns(Boolean sns) {
+        this.sns = sns;
     }
 
     public String getId() {

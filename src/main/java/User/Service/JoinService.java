@@ -29,4 +29,10 @@ public class JoinService {
     public boolean delete_userInfo(String id, String pw){
         return memberInfo_tb_dao.DeleteUserInfo(id, pw);
     }
+
+
+    //사용자 정보 수정
+    public int update_userInfo(JoinCommand joinCommand){
+        return memberInfo_tb_dao.update_userInfo(joinCommand);
+    }
 }

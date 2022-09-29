@@ -83,7 +83,9 @@
     <h2>회원가입</h2>
     <hr class="my-4">
     <div>
-        <button type="submit" onclick="callSa()" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">본인인증</button>
+        <button type="submit" onclick="callSa()"
+                style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">본인인증
+        </button>
     </div>
     <hr>
     <form name="saForm">
@@ -117,7 +119,8 @@
             </div>
             <div class="col-12">
                 <label for="pw_check" class="form-label">비밀번호 확인</label>
-                <form:password path="pw_check" cssClass="form-control" id="pw_check" disabled="true" placeholder="비밀번호 다시 입력하세여"/>
+                <form:password path="pw_check" cssClass="form-control" id="pw_check" disabled="true"
+                               placeholder="비밀번호 다시 입력하세여"/>
                 <form:errors path="pw_check"/>
             </div>
             <div class="col-12">

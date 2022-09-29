@@ -9,15 +9,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     Date nowTime = new Date();
     SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,9 +31,8 @@
 <body>
 <%@include file="includes/header.jsp" %>
 <div class="container col-xxl-8 px-4 py-5">
-<form action="${pageContext.request.contextPath}/search/total" method="get">
-
-        <div >
+    <form action="${pageContext.request.contextPath}/search/total" method="get">
+        <div>
             <h3>전체환율조회</h3>
             <hr>
             <div class="border">
@@ -45,18 +41,17 @@
             <div>
                 <label for="day">조회일</label>
                 <input type="text" name="day" id="day" placeholder="20220919">
-                <input type="submit" value="조회하기" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">
+                <input type="submit" value="조회하기"
+                       style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">
             </div>
-
         </div>
-
-</form>
+    </form>
 </div>
 <c:if test="${not empty exchangeInfoList}">
     <div class="table-responsive exchange-list container px-4 col-xxl-8" style="margin-top: 100px;">
         <h3> 환율 정보 </h3>
         <p>${day} </p>
-        <table class="table table-striped table-sm " >
+        <table class="table table-striped table-sm ">
             <thead>
             <tr>
                 <th scope="col">통화종류</th>
@@ -79,14 +74,9 @@
             </tbody>
         </table>
     </div>
-
-
     </div>
 </c:if>
-
 <%@include file="includes/footer.jsp" %>
-
-
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/query-3.6.0.min.js"></script>
 <script>

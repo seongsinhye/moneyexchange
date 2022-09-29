@@ -26,9 +26,10 @@ public class NoticeDao {
 
 
     //공지사항 삭제
-    public void insert(NoticeInfo noticeInfo){
-        jdbcTemplate.update("INSERT INTO notice(noticeTitle, noticeContent,noticeWriter) values (?,?,?)",
-                noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
+    public void insert(NoticeInfo noticeInfo, String file){
+
+        jdbcTemplate.update("INSERT INTO notice(noticeTitle, noticeContent,noticeWriter, fileName) values (?,?,?,?)",
+                noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter(), file);
     }
 
     //전체 공지사항 내역 조회

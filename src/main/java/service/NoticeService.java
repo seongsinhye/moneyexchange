@@ -4,6 +4,7 @@ import com.mysql.cj.protocol.x.Notice;
 import dao.NoticeDao;
 import dto.NoticeInfo;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,9 +17,11 @@ public class NoticeService {
     }
 
     //공지사항 추가
-    public void add(NoticeInfo noticeInfo){
-        NoticeInfo newNotice = new NoticeInfo(noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
-        noticeDao.insert(newNotice);
+    public void add(NoticeInfo noticeInfo, String file) throws IOException {
+
+        NoticeInfo newNotcie = new NoticeInfo(noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter());
+        noticeDao.insert(newNotcie, file);
+
     }
 
     //공지사항 갯수 조회

@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </c:if>
+
             <c:if test="${empty loginSession}">
                 <form:form action="${pageContext.request.contextPath}/login/self" modelAttribute="loginCommand"
                            cssClass="p-4 p-md-5 border rounded-3 bg-light">
@@ -87,7 +88,12 @@
                         </label>
                     </div>
                     <button class="w-100 btn btn-lg" type="submit" style=" background: rgb(255, 219, 68);">로그인</button>
-
+                    <a href="${url}">
+                        <img src="${pageContext.request.contextPath}/img/btnG_완성형.png">
+                    </a>
+                    <a href="${reqUrl}">
+                        카카오 로그인
+                    </a>
                     <hr class="my-4">
                     <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                 </form:form>

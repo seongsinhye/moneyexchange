@@ -47,10 +47,14 @@
         </div>
         <div id="btn_wrapper" class="line">
             <a href="${pageContext.request.contextPath}/notice">
-                <button type="button" id="goToList" class="goToList_btn" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">목록으로</button>
+                <button type="button" id="goToList" class="goToList_btn"
+                        style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">목록으로
+                </button>
             </a>
             <a href="${pageContext.request.contextPath}/notice/update/page?noticeIdx=${noticeInfo.noticeIdx}">
-                <button type="button" class="goToList_btn" style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">수정하기</button>
+                <button type="button" class="goToList_btn"
+                        style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">수정하기
+                </button>
             </a>
         </div>
     </div>
