@@ -6,7 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %><style>
     @font-face {
         font-family: 'OTWelcomeRA';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
@@ -51,11 +53,18 @@
             <a href="${pageContext.request.contextPath}/calculator" class="nav-link">환율계산기</a>
         </li>
         <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/notice" class="nav-link">공지사항</a>
+            <a href="${pageContext.request.contextPath}/notice" class="nav-link">게시판</a>
         </li>
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/login" class="nav-link">로그인</a>
-        </li>
+        <c:if test="${not empty loginSession}">
+            <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/logout" class="nav-link">로그아웃</a>
+            </li>
+        </c:if>
+        <c:if test="${empty loginSession}">
+            <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/login" class="nav-link">로그인</a>
+            </li>
+        </c:if>
         <li class="nav-item">
             <a href="${pageContext.request.contextPath}/join" class="nav-link">회원가입</a>
         </li>

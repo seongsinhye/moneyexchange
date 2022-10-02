@@ -26,8 +26,6 @@ public class NoticeController {
     }
 
 
-
-
     //공지사항 조회 후 view 페이지 보여주기
     @GetMapping("/notice")
     public String noticePage(Model model, @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber) {
@@ -54,43 +52,49 @@ public class NoticeController {
 
     //공지사항 추가
 
-    @PostMapping("/notice/Add")
+    @PostMapping("/notice/add")
     public String noticeAdd(NoticeInfo noticeInfo, @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
 
-        if(file.isEmpty()){
 
+        if(!file.isEmpty()){
+            String fileRealName = file.getOriginalFilename();
+            long size = file.getSize();
+
+            System.out.println("파일명 = " + fileRealName);
+            System.out.println("용량크기(byte) = " + size);
+
+            String fileExtenstion = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+            String uploadFolder = "/usr/local/apache-tomcat-9.0.65/webapps/moneymoney/img";
+
+
+            UUID uuid = UUID.randomUUID();
+            System.out.println(uuid.toString());
+            String[] uuids = uuid.toString().split("-");
+
+            String uniqueName = uuids[0];
+            System.out.println("생성된 고유문자열 = " + uniqueName);
+            System.out.println("확장자명 = " + fileExtenstion);
+
+            File saveFile = new File(uploadFolder+"//"+uniqueName+fileExtenstion);
+
+            try{
+                file.transferTo(saveFile);
+                noticeInfo.setFileName(uniqueName+fileExtenstion);
+                noticeService.add(noticeInfo, uniqueName+fileExtenstion);
+
+            }catch (IllegalStateException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+        }else {
+            noticeService.add(noticeInfo, null);
         }
-        String fileRealName = file.getOriginalFilename();
-        long size = file.getSize();
-
-        System.out.println("파일명 = " + fileRealName);
-        System.out.println("용량크기(byte) = " + size);
-
-        String fileExtenstion = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-        String uploadFolder = "/Users/gangjiyeon/IdeaProjects/moneyexchange2/src/main/webapp/img";
 
 
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid.toString());
-        String[] uuids = uuid.toString().split("-");
-
-        String uniqueName = uuids[0];
-        System.out.println("생성된 고유문자열 = " + uniqueName);
-        System.out.println("확장자명 = " + fileExtenstion);
-
-        File saveFile = new File(uploadFolder+"//"+uniqueName+fileExtenstion);
-
-        try{
-            file.transferTo(saveFile);
-            noticeInfo.setFileName(uniqueName+fileExtenstion);
-            noticeService.add(noticeInfo, uniqueName+fileExtenstion);
 
 
-        }catch (IllegalStateException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
 
 
 
@@ -126,10 +130,45 @@ public class NoticeController {
 
     //공지사항 수정하기
     @PostMapping("/notice/update")
-    public String noticeUpdate(NoticeInfo noticeInfo, Model model) {
+    public String noticeUpdate(NoticeInfo noticeInfo, Model model, @RequestParam(value = "file", required = false) MultipartFile file) throws IOException{
 
-        //noticeInfo 커맨드객체에 담긴 정보 저장하기
-        noticeService.getNewNoticeInfo(noticeInfo);
+        if(!file.isEmpty()){
+            String fileRealName = file.getOriginalFilename();
+            long size = file.getSize();
+
+            System.out.println("파일명 = " + fileRealName);
+            System.out.println("용량크기(byte) = " + size);
+
+            String fileExtenstion = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+            String uploadFolder = "/usr/local/apache-tomcat-9.0.65/webapps/moneymoney/img";
+
+
+            UUID uuid = UUID.randomUUID();
+            System.out.println(uuid.toString());
+            String[] uuids = uuid.toString().split("-");
+
+            String uniqueName = uuids[0];
+            System.out.println("생성된 고유문자열 = " + uniqueName);
+            System.out.println("확장자명 = " + fileExtenstion);
+
+            File saveFile = new File(uploadFolder+"//"+uniqueName+fileExtenstion);
+
+            try{
+                file.transferTo(saveFile);
+                noticeInfo.setFileName(uniqueName+fileExtenstion);
+                noticeService.noticeDelete(noticeInfo.getNoticeIdx());
+                noticeService.add(noticeInfo, uniqueName+fileExtenstion);
+
+            }catch (IllegalStateException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+        }else {
+            noticeService.getNewNoticeInfo(noticeInfo);
+        }
+
 
         model.addAttribute("noticeInfo", noticeInfo);
         return "notice_detail";

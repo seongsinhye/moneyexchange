@@ -5,6 +5,8 @@ import dao.AlarmDao;
 import dto.AlarmCommand;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AlarmService {
 
@@ -20,6 +22,13 @@ public class AlarmService {
         alarmDao.add(alarmCommand);
     }
 
+    public List<AlarmCommand> select(AlarmCommand alarmCommand){
+        return alarmDao.select(alarmCommand);
+    }
 
+
+    public void delete(int idx){
+        alarmDao.delete(idx);
+    }
 
 }

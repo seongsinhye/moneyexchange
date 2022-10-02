@@ -28,7 +28,7 @@
 <%@include file="includes/header.jsp" %>
 
 <div class="container col-xxl-8 px-4 py-5">
-    <form action="http://localhost:8080/moneyexchange/search/type" method="get">
+    <form action="${pageContext.request.contextPath}/search/type" method="get">
         <div>
             <h3>통화별 검색 </h3>
             <hr>

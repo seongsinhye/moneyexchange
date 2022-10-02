@@ -1,9 +1,13 @@
 package Ctx;
 
+import Controller.AlarmController;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -13,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+
 
 @Configuration
 @EnableWebMvc
@@ -27,6 +32,7 @@ public class MvcCtx implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/view/", ".jsp");
     }
+
 
 
     @Override
@@ -61,6 +67,14 @@ public class MvcCtx implements WebMvcConfigurer {
         ms.setDefaultEncoding("UTF-8");
 
         return ms;
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver(){
+        CommonsMultipartResolver mr = new CommonsMultipartResolver();
+        mr.setMaxInMemorySize(52428800);
+        mr.setDefaultEncoding("utf-8");
+        return mr;
     }
 
 }

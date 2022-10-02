@@ -2,12 +2,29 @@ package dto;
 
 public class AlarmCommand {
 
+    private Integer idx;
     private String user_name;
     private String tel;
     private String exchangeTime;
     private String ac;
     private String type;
 
+    public AlarmCommand(String user_name, String tel, String exchangeTime, String ac, String type) {
+        this.user_name = user_name;
+        this.tel = tel;
+        this.exchangeTime = exchangeTime;
+        this.ac = ac;
+        this.type = type;
+    }
+
+    public AlarmCommand(Integer idx, String user_name, String tel, String exchangeTime, String ac, String type) {
+        this.idx = idx;
+        this.user_name = user_name;
+        this.tel = tel;
+        this.exchangeTime = exchangeTime;
+        this.ac = ac;
+        this.type = type;
+    }
 
     public String getUser_name() {
         return user_name;
@@ -15,6 +32,18 @@ public class AlarmCommand {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public Integer getIdx() {
+        return idx;
+    }
+
+    public void setIdx(Integer idx) {
+        this.idx = idx;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getTel() {
@@ -53,11 +82,4 @@ public class AlarmCommand {
     }
 
 
-    public AlarmCommand(String user_name, String tel, String exchangeTime, String ac, String type) {
-        this.user_name = user_name;
-        this.tel = tel;
-        this.exchangeTime = exchangeTime;
-        this.ac = ac;
-        this.type = type;
-    }
 }

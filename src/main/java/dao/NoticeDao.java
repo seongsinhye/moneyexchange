@@ -6,17 +6,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Member;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 @Repository
 public class NoticeDao {
+
 
     private JdbcTemplate jdbcTemplate;
 
@@ -25,14 +22,12 @@ public class NoticeDao {
     }
 
 
-    //공지사항 삭제
     public void insert(NoticeInfo noticeInfo, String file){
 
         jdbcTemplate.update("INSERT INTO notice(noticeTitle, noticeContent,noticeWriter, fileName) values (?,?,?,?)",
                 noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeWriter(), file);
     }
 
-    //전체 공지사항 내역 조회
     public List<NoticeInfo> selectAll(int start) {
         String sql = "SELECT * from notice ORDER BY noticeInsertDate DESC LIMIT ?, 10";
 
@@ -47,6 +42,7 @@ public class NoticeDao {
                 LocalDateTime noticeInsertDate = rs.getTimestamp("noticeInsertDate").toLocalDateTime();
 
 
+
                 NoticeInfo noticeInfo =new NoticeInfo(noticeIdx, noticeTitle, noticeContent, noticeWriter, noticeInsertDate);
 
 
@@ -59,7 +55,6 @@ public class NoticeDao {
     }
 
 
-    //공지사항 상세 내역 조회
     public NoticeInfo selectNotice(int noticeIdx) {
         String sql = "SELECT * from notice WHERE noticeIdx = ?";
 
@@ -72,9 +67,10 @@ public class NoticeDao {
                 String noticeContent = rs.getString("noticeContent");
                 String noticeWriter = rs.getString("noticeWriter");
                 LocalDateTime noticeInsertDate = rs.getTimestamp("noticeInsertDate").toLocalDateTime();
+                String fileName = rs.getString("fileName");
 
 
-                NoticeInfo noticeInfo =new NoticeInfo(noticeIdx, noticeTitle, noticeContent, noticeWriter, noticeInsertDate);
+                NoticeInfo noticeInfo =new NoticeInfo(fileName, noticeIdx, noticeTitle, noticeContent, noticeWriter, noticeInsertDate);
 
 
                 return noticeInfo;
@@ -85,7 +81,6 @@ public class NoticeDao {
         return results.isEmpty() ? null : results.get(0);
     }
 
-    //공지사항 갯수 조회
     public int getAmount(){
 
         int count = 0;
@@ -95,15 +90,13 @@ public class NoticeDao {
         return count;
     }
 
-    //공지사항 수정
     public void updateNotice(NoticeInfo noticeInfo){
-        jdbcTemplate.update("UPDATE notice SET noticeTitle = ?, noticeContent = ? WHERE noticeIdx = ?",
-                noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeIdx());
+        jdbcTemplate.update("UPDATE notice SET noticeTitle = ?, noticeContent = ?, fileName=? WHERE noticeIdx = ?",
+                noticeInfo.getNoticeTitle(), noticeInfo.getNoticeContent(), noticeInfo.getNoticeIdx(), noticeInfo.getFileName());
 
 
     }
 
-    //공지사항 삭제
     public void noticeDelete(int noticeIdx){
         jdbcTemplate.update("DELETE FROM notice WHERE noticeIdx = ?", noticeIdx);
     }

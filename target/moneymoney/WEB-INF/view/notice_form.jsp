@@ -37,31 +37,31 @@
 
     <c:if test="${empty param.noticeIdx}">
         <div id="wrapper" class=" ">
-            <form:form action="${pageContext.request.contextPath}/notice/Add" method="post" enctype="multipart/form-data" modelAttribute="noticeInfo">
+            <form action="${pageContext.request.contextPath}/notice/add" method="post" enctype="multipart/form-data" >
 
                 <div id="title_wrapper">
-                    <form:input type="text" path="noticeTitle" class="title_txt title" id="form_detail_text" placeholder="제목을 입력하세요." style="padding: 20px;" />
+                    <input type="text" name="noticeTitle" class="title_txt title" id="form_detail_text" placeholder="제목을 입력하세요." style="padding: 20px;" />
                     <span class="updateday"> <%= sf.format(nowTime) %> </span>
                 </div>
 
                 <textarea name="noticeContent" id="contents_wrapper" style="padding: 30px; width: 100%; min-height: 500px;" class=" contents" placeholder="내용을 입력하세요"></textarea>
 
-                <form:input type="hidden" path="noticeWriter" value="admin" />
+                <input type="text" name="noticeWriter" value="admin" hidden/>
 
                 <div id="file_wrapper">
-                    <form:input type="file" path="fileName" />
+                    <input type="file" name="file" />
                 </div>
 
                 <div id="btn_wrapper">
                     <button type="submit" id="goToSubmit" class="goToList_btn">등록하기</button>
                 </div>
-            </form:form>
+            </form>
         </div>
     </c:if>
 
     <c:if test="${not empty param.noticeIdx}">
         <div id="wrapper" class=" ">
-            <form:form action="${pageContext.request.contextPath}/notice/update?noticeIdx=${noticeInfo.noticeIdx}" method="post" modelAttribute="noticeInfo">
+            <form:form action="${pageContext.request.contextPath}/notice/update?noticeIdx=${noticeInfo.noticeIdx}" method="post" modelAttribute="noticeInfo" enctype="multipart/form-data">
                 <input type="hidden" name="noticeIdx" value="${noticeInfo.noticeIdx}">
 
                 <div id="title_wrapper">
@@ -69,10 +69,10 @@
                     <span class="updateday"> <%= sf.format(nowTime) %> </span>
                 </div>
                 <textarea name="noticeContent" id="contents_wrapper" style="padding: 30px; width: 100%; min-height: 500px;" class=" contents"  >${noticeInfo.noticeContent}</textarea>
-                <input type="hidden" name="noticeWriter" value="admin">
+                <input type="text" name="noticeWriter" value="admin" hidden>
 
                 <div id="file_wrapper">
-                    <input type="file" name="uploadFile" value="${noticeInfo.fileName}">
+                    <input type="file" name="file" value="${noticeInfo.fileName}">
                 </div>
 
                 <div id="btn_wrapper">

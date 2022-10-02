@@ -26,8 +26,8 @@
 <%@include file="includes/header.jsp" %>
 
 <div class=" container col-xxl-8 px-4 py-5">
-    <h2 style="display: inline; margin-right: 10px;">공지사항</h2><a href="${pageContext.request.contextPath}/notice/form">
-    <button style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">공지사항 작성하기
+    <h2 style="display: inline; margin-right: 10px;">게시판</h2><a href="${pageContext.request.contextPath}/notice/form">
+    <button style="border-radius: 5px; padding: 5px 10px; border:none; background: rgb(255, 219, 68);">게시글 작성하기
     </button>
 </a>
 
@@ -35,17 +35,19 @@
     <c:if test="${empty noticeInfoList}">
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action ">
-            공지사항이 없습니다.
+            게시글이 없습니다.
         </a>
     </div>
 
     </c:if>
     <c:forEach items="${noticeInfoList}" var="noticeInfo">
     <div class="list-group">
-        <a href=${pageContext.request.contextPath}/notice/detail?noticeIdx=${noticeInfo.noticeIdx}"
+        <a href="${pageContext.request.contextPath}/notice/detail?noticeIdx=${noticeInfo.noticeIdx}"
            class="list-group-item list-group-item-action ">
                 ${noticeInfo.noticeTitle}
         </a>
+
+
     </div>
     </c:forEach>
     <div style="padding-left: 43%;">

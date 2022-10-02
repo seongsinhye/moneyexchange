@@ -21,11 +21,6 @@ div, h2 { margin: 0; }
     display: flex;
     align-items: center;
 }
-
-#file_wrapper img {
-    width: 40px;
-}
-
 a:link, a:visited {
     text-decoration: none;
     color: #666;

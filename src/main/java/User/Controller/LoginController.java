@@ -220,12 +220,6 @@ public class LoginController {
             return "join2";
         }
 
-
-
-
-
-
-
         return "/login_success"; //본인 원하는 경로 설정
     }
 
