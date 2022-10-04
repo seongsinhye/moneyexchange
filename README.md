@@ -1,4 +1,4 @@
-# 👋 `Money Exchange` read.me 페이지 입니다!
+# 👋 환전사이트 프로젝트 입니다!
 
 ### 🤗 **프로젝트 요약**
 
@@ -23,6 +23,11 @@
   
 ---
 ### **🤗 시연영상**
+
+1. 로그인, 전체, 통화별 환율 조회 
+<p align="center"><img src="https://user-images.githubusercontent.com/107236098/193770652-c4c6db18-823a-446e-82ce-2f2bf6a1c231.gif"></p>
+<br>
+
 
 ---
 ### **🤗 이런 기술이 사용되었어요**
