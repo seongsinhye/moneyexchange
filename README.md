@@ -22,15 +22,19 @@
 
   
 ---
-### **🤗 시연영상**
+### **✨ 시연영상**
 
 1. 로그인, 전체, 통화별 환율 조회 
 <p align="center"><img src="https://user-images.githubusercontent.com/107236098/193770652-c4c6db18-823a-446e-82ce-2f2bf6a1c231.gif"></p>
 <br>
 
+2. 환율 알림서비스 
+<p align="center"><img src="https://user-images.githubusercontent.com/107236098/193771297-1c8b2861-eeef-4c93-8604-9018a474b545.gif"></p>
+<br>
+
 
 ---
-### **🤗 이런 기술이 사용되었어요**
+### **🛠 이런 기술이 사용되었어요**
 | 구분 | skills 
 | --- | --- |
 | front-end | <img alt="HTML" src ="https://img.shields.io/badge/Html-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="HTML" src ="https://img.shields.io/badge/CSS3-FF9933.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/> <img alt="HTML" src ="https://img.shields.io/badge/JavaScript-F7DF1E.svg?&style=for-the-badge&logo=JAVASCRIPT&logoColor=white"/> <img alt="HTML" src ="https://img.shields.io/badge/JQuery-0769AD.svg?&style=for-the-badge&logo=JQUERY&logoColor=white"/> |
