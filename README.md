@@ -33,6 +33,11 @@
 <br>
 
 
+3. 환율 계산기 결제 api 
+<p align="center"><img src="https://user-images.githubusercontent.com/107236098/193771677-87e9a024-9338-4c5b-819f-9553d1d75a76.gif"></p>
+<br>
+
+
 ---
 ### **🛠 이런 기술이 사용되었어요**
 | 구분 | skills 
