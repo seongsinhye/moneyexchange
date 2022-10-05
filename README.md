@@ -50,24 +50,22 @@
 
 ---
 
-### 🤗 개발목표   
-1. `공공데이터 포털의 Open API` 이용
-    - TM 좌표 기반의 가장 가까운 관측소 거리 계산, 관측소 정보 조회
-    - 관측소 정보 data를 파싱해 해당 관측소의 현재 대기상태 조회
-2. `JSON, XML 파일을 파싱`하여 이용자에게 데이터 제공
-3. `rest API`
-    - Kakao 공유하기 기능을 사용 해 mbti 페이지 다른 사용자에게 공유   
-    - kakao 지도 api를 이용한 좌표계 변환(위/경도 - TM 좌표)
-    - naver 공유 api를 이용한 사이트 공유
-4. `html2canvas`를 사용하여 mbti 결과 화면 캡쳐 후 데스크톱 download 폴더에 저장
-5. `geolocation api`를 활용한 사용자의 지리 정보 조회
-6. flex, grid를 활용한 모바일 화면 지원
-7. SPRING MVC를 활용한 프로젝트 구조 단순화
 
 
----
 
-### 🤗 레퍼런스 문서  
+
+
+###  💿 시퀀스 다이어그램 
+
+1. 로그인, 로그아웃 
+<img width="1334" alt="image" src="https://user-images.githubusercontent.com/107236098/193998214-32fe2b5d-eaf5-42d5-92a2-331e95fb8faa.png">
+<br>
+2. 게시판 목록 
+<img width="921" alt="image" src="https://user-images.githubusercontent.com/107236098/193998331-54322e49-37ba-4658-9a0b-2c0d22e6177a.png">
+<br>
+
+3. 환율 통화별 조회 
+<img width="951" alt="image" src="https://user-images.githubusercontent.com/107236098/193998416-92064acb-1f68-4884-9b13-dd014c2bd9ba.png">
 
 
  
