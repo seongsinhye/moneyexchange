@@ -23,9 +23,9 @@ public class DatabaseCtx {
         DataSource ds = new DataSource();
 
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://ec2-3-39-230-54.ap-northeast-2.compute.amazonaws.com:3306/moneyExchange");
-        ds.setUsername("root");
-        ds.setPassword("vldksh1207!");
+        ds.setUrl("");
+        ds.setUsername("");
+        ds.setPassword("");
 
         return ds;
     }
